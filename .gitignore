@@ -70,7 +70,6 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
 .env.test
 .env.production
 
@@ -111,7 +110,7 @@ dist
 .vscode-test
 
 # WebStorm configuration
-.idea
+.idea/
 
 # yarn v2
 .yarn/cache
