@@ -4,7 +4,7 @@
   "description": "Simple CRUD API - NodeJS application",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon index",
+    "start:dev": "nodemon ./src/index",
     "test": "jest"
   },
   "repository": {
