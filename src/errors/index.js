@@ -19,7 +19,15 @@ class PersonNotFoundError extends CustomErrors {
     }
 }
 
+class NotAllRequiredFieldsExists extends CustomErrors {
+    constructor() {
+        super('Not all required fields exists');
+        this.name = 'NotAllRequiredFieldsExists';
+    }
+}
+
 module.exports = {
     PersonIdNotInUuidFormatError,
-    PersonNotFoundError
+    PersonNotFoundError,
+    NotAllRequiredFieldsExists
 };

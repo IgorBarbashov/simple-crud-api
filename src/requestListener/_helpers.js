@@ -25,9 +25,26 @@ const sendNotFoundResponse = (response, id) => {
     response.end();
 };
 
+
+const sendNotAllRequiredFieldsExistsResponse = (response) => {
+    response.statusCode = 400;
+    response.write(MESSAGES.NOT_REQUIRED_FIELD_EXISTS);
+    response.end();
+};
+
+
+const sendCreatedWithJsonResponse = (response, body) => {
+    response.statusCode = 201;
+    response.setHeader(HTTP_HEADERS.CONTENT_TYPE.KEY, HTTP_HEADERS.CONTENT_TYPE.VALUE.JSON);
+    response.write(JSON.stringify(body));
+    response.end();
+};
+
 module.exports = {
     sendUnsupportedRouteResponse,
     sendOkWithJsonResponse,
     sendPersonIdNotInUuidFormatResponse,
-    sendNotFoundResponse
+    sendNotFoundResponse,
+    sendNotAllRequiredFieldsExistsResponse,
+    sendCreatedWithJsonResponse
 };

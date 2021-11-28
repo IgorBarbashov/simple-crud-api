@@ -4,7 +4,8 @@ const MESSAGES = {
     INTERNAL_SERVER_ERROR: 'Internal server error',
     HTTP_UNSUPPORTED_ROUTE: 'API doesn\'t support route',
     ID_NOT_IN_UUID_FORMAT: 'ID doesn\'t match uuid format',
-    ID_NOT_FOUND: 'Not found entity with id'
+    ID_NOT_FOUND: 'Not found entity with id',
+    NOT_REQUIRED_FIELD_EXISTS: 'Not all required fields exists'
 };
 
 module.exports = {
