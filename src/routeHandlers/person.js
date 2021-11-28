@@ -42,9 +42,7 @@ const createPerson = async (body) => {
         setTimeout(() => {
             const id = uuidv4();
             const savedBody = { ...body, id };
-            console.log(data);
             data.push(savedBody);
-            console.log(data);
             resolve(savedBody);
         }, 300);
     });
