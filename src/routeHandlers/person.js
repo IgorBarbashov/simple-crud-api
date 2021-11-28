@@ -50,7 +50,30 @@ const createPerson = async (body) => {
     });
 };
 
-const updatePerson = async () => {};
+const updatePerson = async (id, body) => {
+    const isIdMatchUuid = isIdInUuidFormat(id);
+    if (!isIdMatchUuid) {
+        throw new PersonIdNotInUuidFormatError();
+    }
+    const isRequiredFieldsExists = isAllRequiredFieldsExists(body, model);
+    if (!isRequiredFieldsExists) {
+        throw new NotAllRequiredFieldsExists();
+    }
+    const entityIndex = data.findIndex(el => el.id === id);
+    if (entityIndex === -1) {
+        throw new PersonNotFoundError(id);
+    }
+    const [updatedPerson, updateEntities] = await new Promise(resolve => { // aka async request to DB
+        setTimeout(() => {
+            const newPerson = { ...body, id };
+            const newEntities = data.filter(el => el.id !== id);
+            newEntities.push(newPerson);
+            resolve([newPerson, newEntities]);
+        }, 300);
+    });
+    data = updateEntities;
+    return updatedPerson;
+};
 
 const deletePerson = async (id) => {
     const isIdMatchUuid = isIdInUuidFormat(id);
