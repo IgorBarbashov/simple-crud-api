@@ -40,11 +40,17 @@ const sendCreatedWithJsonResponse = (response, body) => {
     response.end();
 };
 
+const sendDeletedResponse = (response) => {
+    response.statusCode = 204;
+    response.end();
+};
+
 module.exports = {
     sendUnsupportedRouteResponse,
     sendOkWithJsonResponse,
     sendPersonIdNotInUuidFormatResponse,
     sendNotFoundResponse,
     sendNotAllRequiredFieldsExistsResponse,
-    sendCreatedWithJsonResponse
+    sendCreatedWithJsonResponse,
+    sendDeletedResponse
 };

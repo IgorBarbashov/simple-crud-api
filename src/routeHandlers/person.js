@@ -7,7 +7,7 @@ const {
 } = require('../errors');
 const { ENTITIES } = require('../constants');
 
-const { data, model } = db[ENTITIES.PERSON];
+let { data, model } = db[ENTITIES.PERSON];
 
 const getAllPersons = async () => {
     return await new Promise(resolve => { // aka async request to DB
@@ -51,7 +51,23 @@ const createPerson = async (body) => {
 };
 
 const updatePerson = async () => {};
-const deletePerson = async () => {};
+
+const deletePerson = async (id) => {
+    const isIdMatchUuid = isIdInUuidFormat(id);
+    if (!isIdMatchUuid) {
+        throw new PersonIdNotInUuidFormatError();
+    }
+    const entitiesWithoutDeleted = await new Promise(resolve => { // aka async request to DB
+        setTimeout(() => {
+            resolve(data.filter(el => el.id !== id));
+        }, 300);
+    });
+    if (entitiesWithoutDeleted.length === data.length) {
+        throw new PersonNotFoundError(id);
+    }
+    data = entitiesWithoutDeleted;
+    return entitiesWithoutDeleted;
+};
 
 module.exports = {
     getAllPersons,
